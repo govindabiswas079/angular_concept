@@ -1,0 +1,119 @@
+<div class="card m-3">
+  <div class="card-body">
+    <form [formGroup]="registerForm" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+      <div style="display: flex;" class="form-row">
+        <div class="form-group col">
+          <label>Title</label>
+          <select formControlName="Title" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.Title.errors }">
+            <option value=""></option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms">Ms</option>
+          </select>
+          <div *ngIf="submitted && f.Title.errors" class="invalid-feedback">
+            <div *ngIf="f.Title.errors.required">Title is required</div>
+          </div>
+        </div>
+
+        <div style="margin: 0 5px;" class="form-group col-5">
+          <label>First Name</label>
+          <input type="text" formControlName="FirstName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }" />
+          <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+            <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-5">
+          <label>Last Name</label>
+          <input type="text" formControlName="LastName" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }" />
+          <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+            <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Mobile</label>
+          <input type="text" (keypress)="numberOnly($event)" maxlength="10" formControlName="Mobile"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Mobile.errors }" />
+          <div *ngIf="submitted && f.Mobile.errors" class="invalid-feedback">
+            <div *ngIf="f.Mobile.errors.required">Mobile is required</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Date of Birth</label>
+          <input type="date" formControlName="Dob" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.Dob.errors }" />
+          <div *ngIf="submitted && f.Dob.errors" class="invalid-feedback">
+            <div *ngIf="f.Dob.errors.required">Date of Birth is required</div>
+            <div *ngIf="f.Dob.errors.pattern">Date of Birth must be a valid date in the format YYYY-MM-DD</div>
+          </div>
+        </div>
+        <div class="form-group col">
+          <label>Email</label>
+          <input type="text" formControlName="Email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+          <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+            <div *ngIf="f.Email.errors.required">Email is required</div>
+            <div *ngIf="f.Email.errors.Email">Email must be a valid email address</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          <label>Password</label>
+          <div class="input-group">
+            <input [type]="fieldTextType ? 'text' : 'password'" formControlName="Password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" />
+            <div class="input-group-append">
+              <span style="cursor: pointer;" class="input-group-text">
+                <i class="bi" [ngClass]="{
+                'bi-eye-fill': !fieldTextType,
+                'bi-eye-slash-fill': fieldTextType
+              }" (click)="toggleFieldTextType()"></i>
+              </span>
+            </div>
+            <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+              <div *ngIf="f.Password.errors.required">Password is required</div>
+              <div *ngIf="f.Password.errors.minlength">Password must be at least 6 characters</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group col">
+          <label>Confirm Password</label>
+          <div class="input-group">
+            <input [type]="repeatFieldTextType ? 'text' : 'password'" formControlName="ConfirmPassword"
+              class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ConfirmPassword.errors }" />
+            <div class="input-group-append">
+              <span style="cursor: pointer;" class="input-group-text">
+                <i class="bi" [ngClass]="{
+                'bi-eye-fill': !repeatFieldTextType,
+                'bi-eye-slash-fill': repeatFieldTextType
+              }" (click)="toggleRepeatFieldTextType()"></i>
+              </span>
+            </div>
+            <div *ngIf="submitted && f.ConfirmPassword.errors" class="invalid-feedback">
+              <div *ngIf="f.ConfirmPassword.errors.required">Confirm Password is required</div>
+              <div *ngIf="f.ConfirmPassword.errors.mustMatch">Passwords must match</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="text-center">
+        <button class="btn btn-primary mr-1">Register</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+      </div>
+      <br>
+      <br>
+      <app-card></app-card>
+    </form>
+  </div>
+  <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="blue" type="ball-spin-clockwise">
+    <p style="font-size: 20px; color: white">Loading...</p>
+  </ngx-spinner>
+</div>
