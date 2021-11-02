@@ -1,0 +1,10 @@
+<input type="file" #file name="file" id="file" (change)="preview(file.files)">  
+
+<div class="container">
+                    <qr-code value="efcavderfcveravrvevtfrvtrbgrtbvgrrwbvvwrggttfbtnehnh" size="300" errorCorrectionLevel="M">
+                    </qr-code>
+</div>
+<input type="file" accept="image/*" (change)="onFileChange($event)">
+
+<zxing-scanner #scanner start="true" (scanSuccess)="render($event)" ></zxing-scanner><!-- [formats]="['QR_CODE', 'EAN_13', 'CODE_128', 'DATA_MATRIX']" -->
+<img src="{{baseImage}}" alt=""/><!-- selected image preview -->
