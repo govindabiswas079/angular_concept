@@ -1,0 +1,15 @@
+<form [formGroup]="registerForm" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                    <div class="form-group col">
+                                        <label>Credit Card Number</label>
+                                        <input formControlName="creditcard" (keypress)="numberOnly($event)"
+                                                            class="form-control" name="credit-card" type="text"
+                                                            maxlength="19" placeholder="Enter your card number"
+                                                            [ngClass]="{ 'is-invalid': submitted && f.creditcard.errors }"
+                                                            credit-card>
+                                        <div *ngIf="submitted && f.creditcard.errors" class="invalid-feedback">
+                                                            <div *ngIf="f.creditcard.errors.required">creditcard is
+                                                                                required</div>
+                                        </div>
+
+                    </div>
+</form>
