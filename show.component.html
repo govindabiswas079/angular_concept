@@ -1,0 +1,55 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="blue" type="ball-spin-clockwise">
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content white-text">
+        <div class="row">
+          <div class="col s7">
+            <p *ngIf="data.length <= 0" style="color: black;" class="no-data text-center">There is no data added yet!
+            </p>
+
+            <table class="table" *ngIf="data.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">Dob</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let dataa of data; let i = index">
+                  <th scope="row">{{i + 1}}</th>
+                  <td>{{dataa.Id}}</td>
+                  <td>{{dataa.FirstName}} {{dataa.LastName}}</td>
+                  <td>{{dataa.Email}}</td>
+                  <td>{{dataa.Mobile}}</td>
+                  <td>{{dataa.Dob | date:'dd/MM/yyyy'}}</td>
+                  <td>{{dataa.currentDate | date:'dd/MM/yyyy'}}</td>
+                  <!-- <td>{{dataa.currentDate | date:'dd/MM/yyyy HH:mm:ss'}}</td> -->
+                  <td>
+                    <!-- <a style="cursor: pointer;" class="action-btn" [routerLink]="['/update/', (dataa.Id)]">
+                      <i class="material-icons">edit</i>
+                    </a> -->
+                    <!-- <a style="cursor: pointer;" class="action-btn" (click)="onDelete(dataa.Id)">
+                      <i class="material-icons">delete</i>
+                    </a> -->
+                    <a style="cursor: pointer;" class="action-btn" [routerLink]="['/showwith/', (dataa.Id)]">
+                      <i class="material-icons">visibility</i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
