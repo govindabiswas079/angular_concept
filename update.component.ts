@@ -147,3 +147,4 @@ export class UpdateComponent implements OnInit {
   };
 
 };
+//////ng update concept
