@@ -50,3 +50,4 @@ export class ShowWithIdComponent implements OnInit {
   };
 
 };
+/////angular pharm concept
